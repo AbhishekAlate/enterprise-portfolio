@@ -6,6 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import FadeIn from "@/components/FadeIn";
 import StaggerChildren from "@/components/StaggerChildren";
 import StaggerItem from "@/components/StaggerItem";
+import { MotionCard } from "@/components/ui/Card";
 
 export default function HomePage() {
   return (
@@ -71,10 +72,10 @@ export default function HomePage() {
 
       {/* Feature Section */}
       <ScrollReveal delay={0.5} direction="up">
-        <motion.section
+        <MotionCard
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
-          className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/50 sm:p-8 md:p-10"
+          className="group p-6 sm:p-8 md:p-10"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-800/0 via-zinc-700/0 to-zinc-800/0 opacity-0 transition-opacity group-hover:opacity-100" />
           <div className="relative">
@@ -85,7 +86,7 @@ export default function HomePage() {
               Each nav link has a placeholder page so you can start filling content immediately.
             </p>
           </div>
-        </motion.section>
+        </MotionCard>
       </ScrollReveal>
 
       {/* Additional visual elements */}
@@ -97,13 +98,10 @@ export default function HomePage() {
             { title: "Smooth Animations", desc: "Scroll-driven interactions" },
           ].map((item, index) => (
             <ScrollReveal key={item.title} delay={0.7 + index * 0.1} direction="up">
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900/50"
-              >
+              <MotionCard variant="soft" whileHover={{ y: -5 }} className="p-6">
                 <h3 className="font-semibold text-zinc-100">{item.title}</h3>
                 <p className="mt-2 text-sm text-zinc-400">{item.desc}</p>
-              </motion.div>
+              </MotionCard>
             </ScrollReveal>
           ))}
         </div>

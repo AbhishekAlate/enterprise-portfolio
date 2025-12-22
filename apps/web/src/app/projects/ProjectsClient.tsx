@@ -1,7 +1,7 @@
 "use client";
 
 import ScrollReveal from "@/components/ScrollReveal";
-import { motion } from "framer-motion";
+import { MotionCard } from "@/components/ui/Card";
 
 export default function ProjectsClient() {
   const placeholderProjects = [
@@ -29,31 +29,31 @@ export default function ProjectsClient() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {placeholderProjects.map((project, index) => (
             <ScrollReveal key={project.id} delay={0.3 + index * 0.1} direction="up">
-              <motion.div
+              <MotionCard
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/50 sm:p-8"
+                className="group p-6 sm:p-8"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/0 to-zinc-700/0 opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="relative">
                   <h2 className="text-xl font-semibold text-zinc-100 sm:text-2xl">{project.title}</h2>
                   <p className="mt-3 text-zinc-400">{project.description}</p>
                 </div>
-              </motion.div>
+              </MotionCard>
             </ScrollReveal>
           ))}
         </div>
       </ScrollReveal>
 
       <ScrollReveal delay={0.6} direction="up">
-        <motion.div
+        <MotionCard
           whileHover={{ scale: 1.01 }}
-          className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-6 sm:p-8"
+          className="p-6 sm:p-8"
         >
           <p className="text-sm text-zinc-400 sm:text-base">
             Placeholder page — replace this with real content when you're ready.
           </p>
-        </motion.div>
+        </MotionCard>
       </ScrollReveal>
     </div>
   );

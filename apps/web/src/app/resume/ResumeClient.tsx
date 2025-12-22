@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
+import { MotionCard } from "@/components/ui/Card";
 
 export default function ResumeClient() {
   const contactInfo = [
@@ -148,10 +149,7 @@ export default function ResumeClient() {
 
       {/* Contact Information */}
       <ScrollReveal delay={0.2} direction="up">
-        <motion.div
-          whileHover={{ scale: 1.01 }}
-          className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm sm:p-8"
-        >
+        <MotionCard whileHover={{ scale: 1.01 }} className="p-6 sm:p-8">
           <h2 className="mb-6 text-2xl font-semibold sm:text-3xl">Contact Information</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {contactInfo.map((item, index) => {
@@ -185,7 +183,7 @@ export default function ResumeClient() {
               );
             })}
           </div>
-        </motion.div>
+        </MotionCard>
       </ScrollReveal>
 
       {/* Skills Section */}
@@ -199,10 +197,7 @@ export default function ResumeClient() {
                 delay={0.35 + categoryIndex * 0.1}
                 direction="up"
               >
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900/50"
-                >
+                <MotionCard variant="soft" whileHover={{ y: -4 }} className="p-6">
                   <h3 className="mb-4 font-semibold text-zinc-100">{category}</h3>
                   <div className="flex flex-wrap gap-2">
                     {items.map((skill, skillIndex) => (
@@ -218,7 +213,7 @@ export default function ResumeClient() {
                       </motion.span>
                     ))}
                   </div>
-                </motion.div>
+                </MotionCard>
               </ScrollReveal>
             ))}
           </div>
@@ -262,9 +257,9 @@ export default function ResumeClient() {
                     </div>
 
                     {/* Content Card */}
-                    <motion.div
+                    <MotionCard
                       whileHover={{ x: 4 }}
-                      className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/50 sm:p-8"
+                      className="group p-6 sm:p-8"
                     >
                       {/* Period Badge */}
                       <div className="mb-4 inline-block">
@@ -309,7 +304,7 @@ export default function ResumeClient() {
                           ))}
                         </ul>
                       </div>
-                    </motion.div>
+                    </MotionCard>
                   </div>
                 </ScrollReveal>
               ))}
@@ -325,9 +320,9 @@ export default function ResumeClient() {
           <div className="space-y-6">
             {education.map((edu, index) => (
               <ScrollReveal key={edu.degree} delay={0.55 + index * 0.1} direction="up">
-                <motion.div
+                <MotionCard
                   whileHover={{ x: 4 }}
-                  className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 sm:p-8"
+                  className="p-6 sm:p-8"
                 >
                   <h3 className="text-xl font-semibold text-zinc-100 sm:text-2xl">
                     {edu.degree}
@@ -339,7 +334,7 @@ export default function ResumeClient() {
                   </div>
                   <div className="mt-2 text-sm text-zinc-500">{edu.period}</div>
                   <p className="mt-3 text-zinc-300">{edu.details}</p>
-                </motion.div>
+                </MotionCard>
               </ScrollReveal>
             ))}
           </div>
@@ -353,15 +348,15 @@ export default function ResumeClient() {
           <div className="space-y-6">
             {projects.map((project, index) => (
               <ScrollReveal key={project.title} delay={0.65 + index * 0.1} direction="up">
-                <motion.div
+                <MotionCard
                   whileHover={{ x: 4 }}
-                  className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/50 sm:p-8"
+                  className="p-6 sm:p-8"
                 >
                   <h3 className="text-xl font-semibold text-zinc-100 sm:text-2xl">
                     {project.title}
                   </h3>
                   <p className="mt-3 text-zinc-300">{project.description}</p>
-                </motion.div>
+                </MotionCard>
               </ScrollReveal>
             ))}
           </div>
@@ -375,16 +370,17 @@ export default function ResumeClient() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map((cert, index) => (
               <ScrollReveal key={cert.name} delay={0.75 + index * 0.1} direction="up">
-                <motion.div
+                <MotionCard
+                  variant="soft"
                   whileHover={{ y: -4, scale: 1.02 }}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900/50"
+                  className="p-6"
                 >
                   <h3 className="font-semibold text-zinc-100">{cert.name}</h3>
                   <div className="mt-2 flex flex-col gap-1 text-sm text-zinc-400">
                     <span>{cert.issuer}</span>
                     {cert.year && <span className="text-zinc-500">{cert.year}</span>}
                   </div>
-                </motion.div>
+                </MotionCard>
               </ScrollReveal>
             ))}
           </div>
@@ -398,9 +394,9 @@ export default function ResumeClient() {
           <div className="space-y-6">
             {publications.map((pub, index) => (
               <ScrollReveal key={pub.title} delay={0.85 + index * 0.1} direction="up">
-                <motion.div
+                <MotionCard
                   whileHover={{ x: 4 }}
-                  className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/50 sm:p-8"
+                  className="p-6 sm:p-8"
                 >
                   <h3 className="text-xl font-semibold text-zinc-100 sm:text-2xl">
                     {pub.title}
@@ -411,7 +407,7 @@ export default function ResumeClient() {
                     <span className="text-zinc-500">{pub.year}</span>
                   </div>
                   <p className="mt-3 text-zinc-300">{pub.description}</p>
-                </motion.div>
+                </MotionCard>
               </ScrollReveal>
             ))}
           </div>
@@ -422,10 +418,7 @@ export default function ResumeClient() {
       <ScrollReveal delay={0.9} direction="up">
         <div>
           <h2 className="mb-6 text-2xl font-semibold sm:text-3xl">Additional Information</h2>
-          <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm sm:p-8"
-          >
+          <MotionCard whileHover={{ scale: 1.01 }} className="p-6 sm:p-8">
             <h3 className="mb-4 text-lg font-semibold text-zinc-100">Interests</h3>
             <div className="flex flex-wrap gap-2">
               {additionalInfo.interests.map((interest, index) => (
@@ -441,7 +434,7 @@ export default function ResumeClient() {
                 </motion.span>
               ))}
             </div>
-          </motion.div>
+          </MotionCard>
         </div>
       </ScrollReveal>
     </div>

@@ -1,13 +1,14 @@
 # 🚀 Enterprise-Ready Portfolio  
-### Production-grade web & mobile architecture — designed to be forked, extended, and shipped
+### Production-grade web & mobile architecture -> designed to be forked, extended, and shipped
 
 > **Designing and shipping production-grade web and mobile systems.**
 
 This repository is intentionally **not a static portfolio** or a visual demo.  
 It is a **real, production-ready foundation** that demonstrates how modern engineering teams design, validate, deploy, and evolve software systems over time.
 
+If you are a developer forking this repository, you are starting from a **clean, scalable baseline** — not just a demo.
+
 If you are a hiring manager, engineering manager, or senior engineer reviewing this repository, you are looking at the **same architectural patterns** I use when building real products.  
-If you are a developer forking this repository, you are starting from a **clean, scalable baseline** — not a toy example.
 
 ---
 
@@ -40,7 +41,7 @@ Most portfolios optimize for **appearance**.
 This one optimizes for **engineering judgment**.
 
 What you’ll notice here:
-- Architecture before UI
+- Architecture before UI (I still made it pretty though ;))
 - Shared contracts across clients
 - Web and mobile parity
 - Real deployment pipeline
@@ -68,7 +69,7 @@ enterprise-portfolio/
 Web Client ─┐
             ├──▶ Shared Domain (@repo/shared)
 Mobile App ─┘            │
-                          ▼
+                         ▼
                    Next.js API Routes
                           │
                           ▼
@@ -121,7 +122,7 @@ cd ../.. && pnpm --filter web build
 
 ---
 
-## 🌐 Custom domain
+## 🌐 For Custom domain (Recommended to refer vercel documenation to avoid outdated server information)
 
 ```txt
 A @ 76.76.21.21

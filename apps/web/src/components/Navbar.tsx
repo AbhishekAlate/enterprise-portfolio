@@ -18,8 +18,8 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { href: "/", label: "Home" },
     { href: "/projects", label: "Projects" },
-    { href: "/blog", label: "Blog" },
     { href: "/resume", label: "Resume" },
     { href: "/contact", label: "Contact" },
   ];
@@ -50,7 +50,7 @@ export default function Navbar() {
         </Link>
         <nav className="flex gap-4 text-sm sm:gap-6">
           {navLinks.map((link, index) => {
-            const isActive = pathname === link.href;
+            const isActive = link.href === "/" ? pathname === "/" : pathname === link.href;
             return (
               <motion.div
                 key={link.href}

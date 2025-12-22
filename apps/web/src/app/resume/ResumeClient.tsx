@@ -25,7 +25,7 @@ export default function ResumeClient() {
       company: "Amazon Web Services Inc.",
       location: "Seattle, WA",
       period: "Present",
-      description: "Specializing in large-scale product releases, automation frameworks, and cross-platform validation. Designing scalable test strategies and building secure test infrastructure with integrated AI agents.",
+      description: "Spearheaded the development of the quality assurance and release engineering for the Amazon WorkSpaces client platforms.",
       achievements: [
         "Led an 8-member offshore QA team to deliver 142 releases and 42 features across six WorkSpaces client platforms by designing and implementing a unified release process for two engineering teams",
         "Reduced the release cycle by 10 days; validated over 100+ releases by introducing automated feature and security validation, including CVE detection within a Python-based test framework",
@@ -38,7 +38,7 @@ export default function ResumeClient() {
       company: "Apple Inc.",
       location: "Hyderabad, India",
       period: "April 2019 - August 2019",
-      description: "Spearheaded the design and development of a Python-based test automation framework for the Apple Business Registration workflow.",
+      description: "Led the design and development of a Python-based test automation framework for the Apple Business Registration workflow.",
       achievements: [
         "Enabled the QA team to rapidly scale coverage and standardize validation for core business flows",
         "Delivered high-priority automated test suites for new features, driving test coverage to 60% within the first two months",
@@ -63,7 +63,7 @@ export default function ResumeClient() {
       company: "Veritas Pvt. Ltd. (formerly Symantec)",
       location: "Pune, India",
       period: "March 2014 - June 2016",
-      description: "Designed and implemented test automation solutions and infrastructure for enterprise software products.",
+      description: "Designed and implemented test automation solutions and infrastructure for enterprise informmation management software products.",
       achievements: [
         "Mentored and onboarded 7–10 new engineers, accelerating ramp-up time and enabling deeper product understanding",
         "Designed and implemented a web-based virtual machine allocation system that eliminated resource redundancy and reduced testing cycle time by ~3 days",
@@ -141,7 +141,7 @@ export default function ResumeClient() {
           </h1>
           <p className="mt-4 text-xl text-zinc-300 sm:text-2xl">Senior Quality Assurance Engineer</p>
           <p className="mt-2 text-lg text-zinc-400 sm:text-xl">
-            Specializing in large-scale product releases, automation frameworks, and cross-platform validation
+          Senior Quality Assurance Engineer specializing in large-scale product releases, automation frameworks, and cross-platform validation. Known for designing scalable test strategies, building secure test infrastructure with integrated AI agents, and delivering high-impact automation.
           </p>
         </div>
       </ScrollReveal>
@@ -225,49 +225,95 @@ export default function ResumeClient() {
         </div>
       </ScrollReveal>
 
-      {/* Experience Section */}
+      {/* Experience Section with Timeline */}
       <ScrollReveal delay={0.4} direction="up">
         <div>
           <h2 className="mb-6 text-2xl font-semibold sm:text-3xl">Experience</h2>
-          <div className="space-y-8">
-            {experience.map((job, index) => (
-              <ScrollReveal key={job.title} delay={0.45 + index * 0.1} direction="up">
-                <motion.div
-                  whileHover={{ x: 4 }}
-                  className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/50 sm:p-8"
-                >
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-zinc-100 sm:text-2xl">
-                        {job.title}
-                      </h3>
-                      <div className="mt-1 flex flex-col gap-1 text-zinc-400 sm:flex-row sm:gap-2">
-                        <span className="font-medium">{job.company}</span>
-                        <span className="hidden sm:inline">•</span>
-                        <span>{job.location}</span>
-                      </div>
-                      <div className="mt-2 text-sm text-zinc-500">{job.period}</div>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-zinc-300">{job.description}</p>
-                  <ul className="mt-4 space-y-2">
-                    {job.achievements.map((achievement, achievementIndex) => (
-                      <motion.li
-                        key={achievementIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+          <div className="relative">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-[20px] top-0 bottom-0 w-0.5 bg-zinc-700" />
+            
+            {/* Experience Items */}
+            <div className="space-y-12 sm:space-y-16">
+              {experience.map((job, index) => (
+                <ScrollReveal key={job.title} delay={0.45 + index * 0.1} direction="up">
+                  <div className="relative pl-12 sm:pl-16">
+                    {/* Timeline Dot - positioned on the line */}
+                    <div 
+                      className="absolute left-[20px] top-2 z-10"
+                      style={{ transform: 'translateX(-50%)' }}
+                    >
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.5 + index * 0.1 + achievementIndex * 0.1 }}
-                        className="flex items-start gap-3 text-zinc-400"
+                        transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
                       >
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-600" />
-                        <span>{achievement}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </ScrollReveal>
-            ))}
+                        <div className="h-3 w-3 rounded-full border-2 border-zinc-900 bg-zinc-500 shadow-md sm:h-4 sm:w-4 md:h-5 md:w-5">
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.6 + index * 0.1 }}
+                            className="absolute inset-0.5 rounded-full bg-zinc-400 md:bg-zinc-300"
+                          />
+                        </div>
+                      </motion.div>
+                    </div>
+
+                    {/* Content Card */}
+                    <motion.div
+                      whileHover={{ x: 4 }}
+                      className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950/40 to-zinc-900/20 p-6 backdrop-blur-sm transition-all hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/50 sm:p-8"
+                    >
+                      {/* Period Badge */}
+                      <div className="mb-4 inline-block">
+                        <motion.span
+                          initial={{ opacity: 0, y: -10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.55 + index * 0.1 }}
+                          className="rounded-full border border-zinc-700 bg-zinc-800/50 px-4 py-1.5 text-xs font-medium text-zinc-300 sm:text-sm"
+                        >
+                          {job.period}
+                        </motion.span>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div>
+                          <h3 className="text-xl font-semibold text-zinc-100 sm:text-2xl">
+                            {job.title}
+                          </h3>
+                          <div className="mt-1 flex flex-col gap-1 text-zinc-400 sm:flex-row sm:gap-2">
+                            <span className="font-medium">{job.company}</span>
+                            <span className="hidden sm:inline">•</span>
+                            <span>{job.location}</span>
+                          </div>
+                        </div>
+                        
+                        <p className="text-zinc-300">{job.description}</p>
+                        
+                        <ul className="space-y-2 pt-2">
+                          {job.achievements.map((achievement, achievementIndex) => (
+                            <motion.li
+                              key={achievementIndex}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.6 + index * 0.1 + achievementIndex * 0.1 }}
+                              className="flex items-start gap-3 text-zinc-400"
+                            >
+                              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
+                              <span>{achievement}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </ScrollReveal>

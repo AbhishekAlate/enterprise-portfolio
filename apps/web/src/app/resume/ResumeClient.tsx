@@ -25,8 +25,8 @@ export default function ResumeClient() {
       title: "Senior Software Quality Assurance Engineer",
       company: "Amazon Web Services Inc.",
       location: "Seattle, WA",
-      period: "Present",
-      description: "Spearheaded the development of the quality assurance and release engineering for the Amazon WorkSpaces client platforms.",
+      period: "April 2021 - Present",
+      description: "Spearheaded the quality assurance, automation, and release engineering for the Amazon WorkSpaces client platform.",
       achievements: [
         "Led an 8-member offshore QA team to deliver 142 releases and 42 features across six WorkSpaces client platforms by designing and implementing a unified release process for two engineering teams",
         "Reduced the release cycle by 10 days; validated over 100+ releases by introducing automated feature and security validation, including CVE detection within a Python-based test framework",
@@ -39,7 +39,7 @@ export default function ResumeClient() {
       company: "Apple Inc.",
       location: "Hyderabad, India",
       period: "April 2019 - August 2019",
-      description: "Led the design and development of a Python-based test automation framework for the Apple Business Registration workflow.",
+      description: "Led the design and development of a Python-based test automation framework for the Apple Business Connect and Apple maps service .",
       achievements: [
         "Enabled the QA team to rapidly scale coverage and standardize validation for core business flows",
         "Delivered high-priority automated test suites for new features, driving test coverage to 60% within the first two months",
@@ -224,43 +224,26 @@ export default function ResumeClient() {
       <ScrollReveal delay={0.4} direction="up">
         <div>
           <h2 className="mb-6 text-2xl font-semibold sm:text-3xl">Experience</h2>
-          <div className="relative">
-            {/* Vertical Timeline Line */}
-            <div className="absolute left-[20px] top-0 bottom-0 w-0.5 bg-zinc-700" />
-            
-            {/* Experience Items */}
-            <div className="space-y-12 sm:space-y-16">
-              {experience.map((job, index) => (
-                <ScrollReveal key={job.title} delay={0.45 + index * 0.1} direction="up">
-                  <div className="relative pl-12 sm:pl-16">
-                    {/* Timeline Dot - positioned on the line */}
-                    <div 
-                      className="absolute left-[20px] top-2 z-10"
-                      style={{ transform: 'translateX(-50%)' }}
+          <div className="space-y-10 sm:space-y-12">
+            {experience.map((job, index) => (
+              <ScrollReveal key={job.title} delay={0.45 + index * 0.1} direction="up">
+                <div className="flex items-stretch gap-6 sm:gap-8">
+                  <div className="relative flex w-8 shrink-0 items-center justify-center sm:w-10">
+                    <div className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-zinc-500/70 to-transparent" />
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
+                      className="relative z-10"
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
-                      >
-                        <div className="h-3 w-3 rounded-full border-2 border-zinc-900 bg-zinc-500 shadow-md sm:h-4 sm:w-4 md:h-5 md:w-5">
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.6 + index * 0.1 }}
-                            className="absolute inset-0.5 rounded-full bg-zinc-400 md:bg-zinc-300"
-                          />
-                        </div>
-                      </motion.div>
-                    </div>
+                      <div className="flex h-4 w-4 items-center justify-center rounded-full border border-zinc-500/80 bg-zinc-950/90 shadow-[0_0_0_5px_rgba(9,9,11,0.9),0_0_22px_rgba(255,255,255,0.1)] sm:h-5 sm:w-5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-zinc-200 sm:h-2 sm:w-2" />
+                      </div>
+                    </motion.div>
+                  </div>
 
-                    {/* Content Card */}
-                    <MotionCard
-                      whileHover={{ x: 4 }}
-                      className="group p-6 sm:p-8"
-                    >
+                  <MotionCard whileHover={{ x: 4 }} className="group flex-1 p-6 sm:p-8">
                       {/* Period Badge */}
                       <div className="mb-4 inline-block">
                         <motion.span
@@ -287,6 +270,49 @@ export default function ResumeClient() {
                         </div>
                         
                         <p className="text-zinc-300">{job.description}</p>
+
+                        {job.company === "Amazon Web Services Inc." && (
+                          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-800/60 bg-zinc-950/50">
+                            <div className="aspect-video w-full">
+                              <iframe
+                                title="Amazon Web Services video"
+                                src="https://www.youtube.com/embed/uCH04Mlg0yU"
+                                className="h-full w-full"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                              />
+                            </div>
+                          </div>
+                        )}
+
+                        {job.company === "Apple Inc." && (
+                          <div className="mt-4">
+                            <a
+                              href="https://businessconnect.apple.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 rounded-full border border-zinc-700/70 bg-zinc-900/40 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-zinc-500 hover:text-zinc-50"
+                            >
+                              Apple Business Connect
+                            </a>
+                          </div>
+                        )}
+
+                        {job.company.startsWith("Veritas") && (
+                          <div className="mt-4 overflow-hidden rounded-xl border border-zinc-800/60 bg-zinc-950/50">
+                            <div className="aspect-video w-full">
+                              <iframe
+                                title="Veritas video"
+                                src="https://www.youtube.com/embed/LCydAAU977I?list=PLCL5UFA_IQ6s64RVNrG1UiN_aC--JmLYB"
+                                className="h-full w-full"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                              />
+                            </div>
+                          </div>
+                        )}
                         
                         <ul className="space-y-2 pt-2">
                           {job.achievements.map((achievement, achievementIndex) => (
@@ -305,10 +331,9 @@ export default function ResumeClient() {
                         </ul>
                       </div>
                     </MotionCard>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </ScrollReveal>
@@ -334,6 +359,18 @@ export default function ResumeClient() {
                   </div>
                   <div className="mt-2 text-sm text-zinc-500">{edu.period}</div>
                   <p className="mt-3 text-zinc-300">{edu.details}</p>
+                  {edu.degree === "Master of Science, Business Analytics" && (
+                    <div className="mt-4">
+                      <a
+                        href="https://business.gwu.edu/academics/programs/masters/ms-in-business-analytics"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-zinc-700/70 bg-zinc-900/40 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-zinc-500 hover:text-zinc-50"
+                      >
+                        GWU MS Business Analytics
+                      </a>
+                    </div>
+                  )}
                 </MotionCard>
               </ScrollReveal>
             ))}

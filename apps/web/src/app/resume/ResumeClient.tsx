@@ -287,15 +287,46 @@ export default function ResumeClient() {
                         )}
 
                         {job.company === "Apple Inc." && (
-                          <div className="mt-4">
-                            <a
-                              href="https://businessconnect.apple.com/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-full border border-zinc-700/70 bg-zinc-900/40 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-zinc-500 hover:text-zinc-50"
-                            >
+                          <div className="mt-4 rounded-xl border border-zinc-800/60 bg-gradient-to-br from-zinc-950/70 to-zinc-900/40 p-4 sm:p-5">
+                            <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">Preview</div>
+                            <div className="mt-2 text-sm font-semibold text-zinc-200 sm:text-base">
                               Apple Business Connect
-                            </a>
+                            </div>
+                            <p className="mt-2 text-sm text-zinc-400">
+                              Open Apple Business Connect in a new tab.
+                            </p>
+                            <div className="mt-4">
+                              <a
+                                href="https://businessconnect.apple.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full border border-zinc-700/70 bg-zinc-900/40 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-zinc-500 hover:text-zinc-50"
+                              >
+                                Visit Apple Business Connect
+                              </a>
+                            </div>
+                          </div>
+                        )}
+
+                        {job.company === "ServiceNow Inc." && (
+                          <div className="mt-4 rounded-xl border border-zinc-800/60 bg-gradient-to-br from-zinc-950/70 to-zinc-900/40 p-4 sm:p-5">
+                            <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">Preview</div>
+                            <div className="mt-2 text-sm font-semibold text-zinc-200 sm:text-base">
+                              ServiceNow platform
+                            </div>
+                            <p className="mt-2 text-sm text-zinc-400">
+                              Open the official ServiceNow site in a new tab.
+                            </p>
+                            <div className="mt-4">
+                              <a
+                                href="https://www.servicenow.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full border border-zinc-700/70 bg-zinc-900/40 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-zinc-500 hover:text-zinc-50"
+                              >
+                                Visit ServiceNow
+                              </a>
+                            </div>
                           </div>
                         )}
 

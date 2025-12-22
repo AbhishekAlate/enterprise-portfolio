@@ -14,7 +14,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            © {new Date().getFullYear()} enterprise-portfolio
+            © {new Date().getFullYear()} Enterprise-ready portfolio
           </motion.p>
         </div>
       </footer>

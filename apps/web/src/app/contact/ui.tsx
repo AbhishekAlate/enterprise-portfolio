@@ -63,7 +63,12 @@ export default function ContactForm() {
   }
 
   const isSending = status.type === "sending";
-  const statusMessage = status.type === "sending" ? "Sending..." : status.message;
+  const statusMessage =
+    status.type === "sending"
+      ? "Sending..."
+      : status.type === "success" || status.type === "error"
+        ? status.message
+        : "";
 
   return (
     <MotionCard

@@ -7,14 +7,21 @@ import StaggerChildren from "@/components/StaggerChildren";
 import StaggerItem from "@/components/StaggerItem";
 import { MotionCard } from "@/components/ui/Card";
 
+type StatusState =
+  | { type: "idle" }
+  | { type: "sending" }
+  | { type: "success"; message: string }
+  | { type: "error"; message: string };
+
 export default function ContactForm() {
-  const [status, setStatus] = useState<string>("");
+  const [status, setStatus] = useState<StatusState>({ type: "idle" });
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("");
+    setStatus({ type: "sending" });
 
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const payload = {
       name: String(fd.get("name") ?? ""),
       email: String(fd.get("email") ?? ""),
@@ -23,25 +30,40 @@ export default function ContactForm() {
 
     const parsed = ContactSchema.safeParse(payload);
     if (!parsed.success) {
-      setStatus(parsed.error.issues[0]?.message ?? "Invalid input");
+      setStatus({
+        type: "error",
+        message: parsed.error.issues[0]?.message ?? "Invalid input",
+      });
       return;
     }
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(parsed.data),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
 
-    if (!res.ok) {
-      const msg = await res.text().catch(() => "Failed");
-      setStatus(msg);
-      return;
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        const msg =
+          typeof data?.error === "string" ? data.error : "Failed to send. Please try again.";
+        setStatus({ type: "error", message: msg });
+        return;
+      }
+
+      setStatus({
+        type: "success",
+        message: "Thanks for reaching out. I will get back to you soon.",
+      });
+      form.reset();
+    } catch {
+      setStatus({ type: "error", message: "Network error. Please try again." });
     }
-
-    setStatus("Sent バ. (demo)");
-    e.currentTarget.reset();
   }
+
+  const isSending = status.type === "sending";
+  const statusMessage = status.type === "sending" ? "Sending..." : status.message;
 
   return (
     <MotionCard
@@ -50,7 +72,7 @@ export default function ContactForm() {
       transition={{ duration: 0.5 }}
       className="p-6 sm:p-8"
     >
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} aria-busy={isSending}>
         <StaggerChildren className="space-y-5 sm:space-y-6">
           <StaggerItem>
             <div className="space-y-2">
@@ -90,27 +112,33 @@ export default function ContactForm() {
           <StaggerItem>
             <motion.button
               type="submit"
+              disabled={isSending}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full rounded-lg bg-zinc-50 px-6 py-3 text-sm font-medium text-zinc-950 transition-all hover:bg-zinc-100 hover:shadow-lg hover:shadow-zinc-500/20 sm:py-3.5 sm:text-base"
+              className="w-full rounded-lg bg-zinc-50 px-6 py-3 text-sm font-medium text-zinc-950 transition-all hover:bg-zinc-100 hover:shadow-lg hover:shadow-zinc-500/20 disabled:cursor-not-allowed disabled:opacity-70 sm:py-3.5 sm:text-base"
             >
-              Send
+              {isSending ? "Sending..." : "Send"}
             </motion.button>
           </StaggerItem>
         </StaggerChildren>
 
         <AnimatePresence mode="wait">
-          {status && (
+          {status.type !== "idle" && statusMessage && (
             <motion.p
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
               className={`mt-4 text-sm font-medium sm:text-base ${
-                status.includes("バ.") ? "text-green-400" : "text-red-400"
+                status.type === "success"
+                  ? "text-green-400"
+                  : status.type === "error"
+                    ? "text-red-400"
+                    : "text-zinc-300"
               }`}
+              aria-live="polite"
             >
-              {status}
+              {statusMessage}
             </motion.p>
           )}
         </AnimatePresence>

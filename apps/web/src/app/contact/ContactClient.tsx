@@ -14,7 +14,7 @@ export default function ContactClient() {
             </span>
           </h1>
           <p className="text-lg text-zinc-300 sm:text-xl">
-            Placeholder contact form (validated with shared Zod). Later: email (Resend) + DB.
+            Send a note and I will get back to you as soon as possible.
           </p>
         </div>
       </ScrollReveal>

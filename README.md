@@ -98,6 +98,13 @@ Mobile App ─┘            │
 
 ## 🧑‍💻 Local development
 
+- Complete prerequisites if you're missing any
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" # Remove this if you have Homebrew
+brew install node
+npm install -g corepack
+```
+- Run to start local development
 ```bash
 corepack enable
 corepack prepare pnpm@latest --activate

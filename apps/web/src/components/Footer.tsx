@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -16,6 +17,9 @@ export default function Footer() {
           >
             © {new Date().getFullYear()} Enterprise-ready portfolio
           </motion.p>
+          <Link href="/openclaw" className="mt-3 inline-block underline underline-offset-4 hover:text-zinc-200">
+            OpenClaw app information
+          </Link>
         </div>
       </footer>
     </FadeIn>
